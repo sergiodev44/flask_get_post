@@ -4,7 +4,10 @@
 
 {% block contenido %}
 <p style="color: gray;">índice</p>
+<h1>PÁGINA PRINCIPAL "/"</h1>
 <h2>Página General</h2>
+<a href="{{url_for('usuarios.login')}}" style="font-weight: bolder; font-size: medium;">GO TO LOGIN</a>
+<br><br>
 
 <form action="/procesar" method="post">
     <label>Producto: </label>
