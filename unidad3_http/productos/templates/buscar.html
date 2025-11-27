@@ -3,7 +3,7 @@
 {% block titulo %}Resultado de búsqueda {% endblock %}
 
 {% block contenido %}
-<p style="color: gray;">índice > sesion de {{usuario.capitalize()}} > buscar > {{producto_query}}</p>
+<p style="color: gray;">índice > sesion de {{usuario|default('default_usuario')|capitalize}} > buscar > {{producto_query}}</p>
 <h2>Resultados para = "{{producto_query}}"</h2>
 
 
