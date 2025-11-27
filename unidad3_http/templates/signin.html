@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block titulo %}Login{% endblock %}
+
+{% block contenido %}
+<p style="color: gray;">Sign In</p>
+<h2>Crear Nueva Cuenta</h2>
+
+<form action="/signin" method="POST">
+    <label> Usuario: </label>
+    <input type="text" name="usuario" required>
+    <br><br>
+
+    <label> Password: </label>
+    <input type="text" name="password" required>
+    <br><br>
+
+    <button type="submit">Registrar</button>
+</form>
+
+<br>
+<a href="/login">Vovler al login</a>
+
+{% if mensaje %}
+<p style="color: red;">{{mensaje}}</p>
+{% endif %}
+
+
+{% endblock %}

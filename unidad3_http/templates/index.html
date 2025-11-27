@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+<p style="color: gray;">índice</p>
+<h2>Página General</h2>
+
+<form action="/procesar" method="post">
+    <label>Producto: </label>
+    <input type="text" name="producto">
+    <br><br>
+
+    <label>Categoria: </label>
+    <input type="text" name="categoria">
+    <br><br>
+
+    <label>Precio: </label>
+    <input type="text" name="precio">
+    <br><br>
+
+    <input type="submit" value="Enviar">
+</form>
+
+
+
+{% endblock %}

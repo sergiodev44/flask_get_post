@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block titulo %}Sesion{% endblock %}
+
+{% block contenido %}
+<p style="color: gray;">índice > sesion de {{usuario}}</p>
+<h2>Sesión Iniciada</h2>
+<h3>Bienvenido, {{usuario.capitalize()}}</h3>
+
+<form action="/buscar" method=""get>
+    <p>¿Desea buscar algún producto?</p>
+    <input type="text" name="producto" placeholder="Fender Strat">
+    <button type="submit">Buscar</button>
+</form>
+<br>
+
+<form action="/login" method=""get>
+    <button type="submit">volver al login</button>
+</form>
+
+{% endblock %}
