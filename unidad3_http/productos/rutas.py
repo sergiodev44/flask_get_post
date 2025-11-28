@@ -1,23 +1,29 @@
 from flask import Blueprint, render_template, request, session
-from .models import Product
-from ..extensions import db
+from psycopg2.extras import RealDictCursor
+from ..db import get_db_connection
 
 productos_bp = Blueprint(
     'productos',
-    __name__, 
+    __name__,
     template_folder='templates',
     static_folder='static'
-    ) 
-
+)
 
 
 @productos_bp.route('/buscar')
 def buscar():
     producto_query = request.args.get('producto', '')
 
-    resultados = Product.query.filter(
-        Product.name.ilike(f"%{producto_query}%")
-    ).all()
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    cur.execute(
+        'SELECT id, name, category, price FROM products WHERE name ILIKE %s',
+        (f'%{producto_query}%',)
+    )
+
+    resultados = cur.fetchall()
+    cur.close()
+    conn.close()
 
     return render_template(
         'buscar.html',
@@ -25,24 +31,3 @@ def buscar():
         resultados=resultados,
         usuario=session.get('usuario', 'default_user')
     )
-
-
-
-# @productos_bp.route('/buscar')
-# def buscar():
-#     producto_query = request.args.get('producto', '')
-
-#     resultados = []
-
-#     products = [
-#         {"id": 1, "name": "Fender Stratocaster", "category": "Electric Guitar", "price": 1299.99},
-#         {"id": 2, "name": "Gibson Les Paul", "category": "Electric Guitar", "price": 2499.00},
-#         {"id": 3, "name": "Boss DS-1 Distortion", "category": "Effects Pedal", "price": 59.99}
-#     ]
-
-#     for p in products:
-#         if producto_query.lower() in p["name"].lower():
-#             resultados.append(p)
-
-#     return render_template('buscar.html', producto_query=producto_query, resultados=resultados, usuario=session['usuario'])
-

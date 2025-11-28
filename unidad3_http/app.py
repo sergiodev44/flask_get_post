@@ -3,20 +3,16 @@
 # flask 
 from flask import Flask, render_template,jsonify, send_from_directory, request, redirect, url_for,session
 # blueprints
+from dotenv import load_dotenv
+load_dotenv()
+
 from .productos.rutas import productos_bp
 from .usuarios.rutas import usuarios_bp
 from .main.rutas import main_bp
 # .env config.py
-from dotenv import load_dotenv
 from .config import Config, ProdConfig, DevConfig
+from .db import init_db
 import os
-
-load_dotenv()
-
-# inits y dbs
-from .extensions import db, migrate
-from . import cli
-
 
 
 def create_app():
@@ -46,10 +42,10 @@ def create_app():
     if not app.config.get("SECRET_KEY"):
         raise RuntimeError("El SECRET KEY no aparece")
     
-    # extensiones init
-    db.init_app(app)
-    migrate.init_app(app,db)
-    cli.init_app(app)
+    # initialize databse
+    with app.app_context():
+        init_db()
+    
 
     return app
 
