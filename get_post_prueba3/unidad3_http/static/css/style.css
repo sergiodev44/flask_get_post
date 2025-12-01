@@ -1,0 +1,29 @@
+/* Basic custom styles for the Flask app */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+header h1 {
+  font-weight: 600;
+}
+
+footer p {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Small helper spacing */
+.mb-1 { margin-bottom: .25rem !important; }
+.mb-2 { margin-bottom: .5rem !important; }
+.mt-2 { margin-top: .5rem !important; }
+
+/* Make forms and tables a bit more readable inside the container */
+.container form, .container table {
+  background: #fff;
+  padding: 1rem;
+  border-radius: .25rem;
+  box-shadow: 0 0 0.25rem rgba(0,0,0,0.03);
+}

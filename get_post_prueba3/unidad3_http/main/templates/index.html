@@ -4,8 +4,12 @@
 
 {% block contenido %}
 <p style="color: gray;">índice</p>
-<h2>Página General</h2>
+<h1>PÁGINA HOME "/"</h1>
+<a href="{{url_for('usuarios.login')}}" style="font-weight: bolder; font-size: medium;">GO TO LOGIN </a><span> ⬅️</span>
+<br><br>
 
+
+<p>Prueba sencilla del post 😆</p>
 <form action="/procesar" method="post">
     <label>Producto: </label>
     <input type="text" name="producto">

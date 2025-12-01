@@ -8,18 +8,22 @@
 
 <form action="/login" method="POST">
     <label> Usuario: </label>
-    <input type="text" name="usuario" required>
+    <input type="text" name="usuario" placeholder="jack" required>
     <br><br>
 
     <label> Password: </label>
-    <input type="text" name="password" required>
+    <input type="text" name="password" placeholder="1234" prequired>
     <br><br>
 
+    
     <button type="submit">Entrar</button>
+    <span style="color: gray;">"introduce -> jack : 1234" </span>
 </form>
 
 <br>
 <a href="/signin">Crear cuenta nueva</a>
+<br><br>
+<a href="{{url_for('main.home')}}" style="font-weight: bolder; font-size: medium; padding: 7px; border-radius: 8px; background-color: rgb(192, 245, 106);">Volver al incio </a><span> 🦖</span>
 
 {% if mensaje %}
 <p style="color: red;">{{mensaje}}</p>
