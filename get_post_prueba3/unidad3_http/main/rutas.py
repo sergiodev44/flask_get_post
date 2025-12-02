@@ -83,6 +83,7 @@ def prueba_img():
         return render_template('/prueba_img.html', ok=ok)
 
 
+# http://127.0.0.1:5000/ejemplo_final?curso=DWES&tema=Flask
 @main_bp.route('/ejemplo_final')
 def ej_final():
     info = {
@@ -93,4 +94,6 @@ def ej_final():
 
     }
     return jsonify(info)
+
+
     

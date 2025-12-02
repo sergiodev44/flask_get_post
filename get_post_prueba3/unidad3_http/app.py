@@ -6,6 +6,7 @@ from flask import Flask, render_template,jsonify, send_from_directory, request, 
 from productos.rutas import productos_bp
 from usuarios.rutas import usuarios_bp
 from main.rutas import main_bp
+from inspector.rutas import inspector_bp
 # .env config.py
 from dotenv import load_dotenv
 load_dotenv()
@@ -17,6 +18,7 @@ app = Flask(__name__)
 app.secret_key = "key_sesion"
 # blueprints II
 app.register_blueprint(productos_bp,url_prefix='/productos')
+app.register_blueprint(inspector_bp,url_prefix='/inspector')
 app.register_blueprint(usuarios_bp)
 app.register_blueprint(main_bp)
 # config II
