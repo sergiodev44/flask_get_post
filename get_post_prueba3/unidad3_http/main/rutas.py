@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, request, session,redirect, url_for, jsonify
+from flask import Blueprint, render_template, request, session,redirect, url_for, jsonify, make_response
+from datetime import datetime, timedelta
+import time
 
 main_bp = Blueprint(
     'main',
@@ -95,5 +97,86 @@ def ej_final():
     }
     return jsonify(info)
 
+# pruebas de cookies
+@main_bp.route('/ver-cookies')
+def cook_prefs0():
+    tema = request.cookies.get('tema','claro')
+    return f"tu tema actual es: {tema}"
 
+@main_bp.route('/set-cookies')
+def set_cookie():
+     res = make_response("Cookie established")
+     res.set_cookie("tema", "oscuro")
+    #  res.set_cookie("tema", "oscuro", max_age=60*60*24)
+    #  expires = datatime.now() + timedelta(days=7)
+    #  res.set_cookie("tema", "oscuro", expires=expires)
+     return res
+
+# @main_bp.route('/seguridad')
+# def set_cookie2():
+#      res2 = make_response("seguridad establecidad")
+#      res2.set_cookie(
+#           "token", "123abc",
+#           httponly=True,
+#           secure=True,
+#           samesite='Lax'
+#      )
+
+@main_bp.route('/borrar')
+def borrar_cookie():
+     resp = make_response("Cookie eliminado")
+     resp.delete_cookie("tema")
+     resp.delete_cookie("usuario")
+     return resp
+
+
+
+@main_bp.route('/elegir-tema')
+def elegir_tema():
+    return render_template('elegir_tema.html')
+
+@main_bp.route('/guardar-tema', methods=["POST"])
+def guardar_cookies():
+    # version 1
+    value = request.form.get("tema", "claro")
+    res = make_response(redirect(url_for("usuarios.login")))
+    res.set_cookie("tema", value, max_age=60*60*24)
+    return res
+
+
+    # # version 2 
+    # value = request.form.get("tema")
+    # res = make_response(f"cookies guardadas | {value}")
+    # res.set_cookie("tema", value)
+
+    # # opcion que yo hice con el redirect a /
+    # time.sleep(4)
+    # res.headers["Location"] = url_for("main.home")
+    # res.status_code = 302
+
+
+
+# ejercicios de cookies
+@main_bp.route('/preferencias')
+def cook_prefs():
+    return render_template('preferencias.html')
+
+@main_bp.route('/guardar-preferencias', methods=['POST'])
+def cook_prefs2():
+    tema = request.form.get("tema", "claro")
+    font = request.form.get("font", "mediano")
+    lang = request.form.get("lang", "es")
+
+    res = make_response(redirect(url_for("main.home")))
+    res.set_cookie("tema", tema)
+    res.set_cookie("font", font)
+    res.set_cookie("lang", lang)
+    res.set_cookie(
+          "token", "123abc",
+          httponly=True,
+          secure=True,
+          samesite='Lax'
+     )
+
+    return res
     

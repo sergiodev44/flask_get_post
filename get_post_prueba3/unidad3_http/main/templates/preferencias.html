@@ -18,22 +18,36 @@
 
 <main>
     <div class="container my-4">
-        
+        {{ok}}
         {% block contenido %}
-        
-        <form method="post" action="{{url_for('inspector.my_gets3')}}" enctype="multipart/form-data">
-            <input type="text" name="q" placeholder="q"><br><br>
-            <input type="checkbox" name="debug"><span>debug</span><br><br>
-            <select name="categoria">
-                <option value="cat1">Catego A</option>
-                <option value="cat2">Catego B</option>
-            </select>
+        <form method="post" action="/guardar-preferencias">
+           <label>
+               <input type="radio" name="tema" value="claro" checked>Claro
+           </label>
+           <label>
+               <input type="radio" name="tema" value="oscuro">Oscuro
+           </label>
             <br><br>
-            <!-- <input type="file" name="file"><span>(*opcional*)</span> -->
-            <br><br>
-            <button type="submit">continuar</button>
-        </form>
 
+            <label>
+                <input type="radio" name="font" value="pequeño" checked>pequeño
+            </label><br>
+            <label>
+                <input type="radio" name="font" value="mediano">mediano
+            </label><br>
+            <label>
+                <input type="radio" name="font" value="grande">grande
+            </label><br><br>
+
+            <label>
+                <input type="radio" name="lang" value="es" checked>es
+            </label><br>
+            <label>
+                <input type="radio" name="lang" value="en" checked>en
+            </label><br><br>
+
+            <button type="submit" value="Guardar">cambiar</button>
+        </form>
         {% endblock %}
     </div>
 </main>

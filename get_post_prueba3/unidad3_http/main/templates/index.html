@@ -8,6 +8,21 @@
 <a href="{{url_for('usuarios.login')}}" style="font-weight: bolder; font-size: medium;">GO TO LOGIN </a><span> ⬅️</span>
 <br><br>
 
+<p> tu tema actual es: <strong>{{request.cookies.get("tema", "claro")}}</strong>
+    <span style="color: grey;"># prueba mía, no ejercicio</span>
+</p>
+    
+<a href="{{url_for('main.elegir_tema')}}">Cambiar tema</a>
+<br><br>
+
+<div style="padding: 10px; border-radius: 8px; background-color: rgb(220, 219, 219);">
+    <p>tema: {{request.cookies.get("tema", "claro")}}</p>
+    <p>fuente: {{request.cookies.get("font", "pequeña")}}</p>
+    <p>lenguaje: {{request.cookies.get("lang", "swedish")}}</p>
+    <p>token: {{request.cookies.get("token", "09KJhi0ubbis")}}</p>
+</div>
+<br><br>
+
 
 <p>Prueba sencilla del post 😆</p>
 <form action="/procesar" method="post">
