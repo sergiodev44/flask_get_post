@@ -18,7 +18,12 @@
 
 <main>
     <div class="container my-4">
-        {% block contenido %}{% endblock %}
+        
+        {% block contenido %}
+        {% for k,v in resultado.items() %}
+            <p>{{k}} - {{v}}</p>
+        {% endfor %}
+        {% endblock %}
     </div>
 </main>
 

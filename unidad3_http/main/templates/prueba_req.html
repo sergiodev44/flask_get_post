@@ -18,7 +18,27 @@
 
 <main>
     <div class="container my-4">
-        {% block contenido %}{% endblock %}
+        {% block contenido %}
+
+        {{tema}}
+        
+        <form method="post">
+            <input type="text" name="name">
+            <button type="submit">click here</button>
+        </form>
+        
+        {% if 'yes' in message %}
+        <span style="color: rgb(21, 21, 78); background-color: darkgreen;">{{message}}</span>
+        {% else %}
+        <span style="color: rgb(189, 49, 194); background-color: rgb(92, 106, 170);">{{message}}</span>
+        {% endif %}
+
+        <br><br>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">Upload</button>
+        </form>
+        {% endblock %}
     </div>
 </main>
 

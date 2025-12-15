@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block titulo %}Sesion{% endblock %}
+
+{% block contenido %}
+<p style="color: gray;">índice > sesion de {{usuario}}</p>
+<h2>Sesión Iniciada</h2>
+<h3>Bienvenido, {{usuario.capitalize()}}</h3>
+
+<form action="/productos/buscar" method=""get>
+    <p>¿Desea buscar algún producto?</p>
+    <input type="text" name="producto" placeholder="'Fender' o 'Gibson'">
+    <button type="submit">Buscar</button>
+</form>
+<br>
+
+<div>
+    <span style="color: grey;">#el contenido de 'session'</span>
+    <p  style="color: grey;">{{session}}</p>
+</div>
+
+<form action="/login" method=""get>
+    <button type="submit">volver al login</button>
+    <a href="{{url_for('usuarios.logout')}}" style="font-weight: bolder; font-size: medium;">Cerrar Sesion </a><span> ❌</span>
+</form>
+
+<a href="{{url_for('main.home')}}" style="font-weight: bolder; font-size: medium; padding: 7px; border-radius: 8px; background-color: rgb(192, 245, 106);">Volver al incio </a><span> 🦖</span>
+
+
+{% endblock %}

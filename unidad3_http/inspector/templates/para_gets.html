@@ -18,7 +18,23 @@
 
 <main>
     <div class="container my-4">
-        {% block contenido %}{% endblock %}
+        
+        {% block contenido %}
+        
+        <form method="post" action="{{url_for('inspector.my_gets3')}}" enctype="multipart/form-data">
+            <input type="text" name="q" placeholder="q"><br><br>
+            <input type="checkbox" name="debug"><span>debug</span><br><br>
+            <select name="categoria">
+                <option value="cat1">Catego A</option>
+                <option value="cat2">Catego B</option>
+            </select>
+            <br><br>
+            <!-- <input type="file" name="file"><span>(*opcional*)</span> -->
+            <br><br>
+            <button type="submit">continuar</button>
+        </form>
+
+        {% endblock %}
     </div>
 </main>
 

@@ -18,7 +18,13 @@
 
 <main>
     <div class="container my-4">
-        {% block contenido %}{% endblock %}
+        {{ok}}
+        {% block contenido %}
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">upload</button>
+        </form>
+        {% endblock %}
     </div>
 </main>
 
